@@ -76,7 +76,13 @@ async def start_command(client: Client, message: Message):
                 reply_markup = msg.reply_markup
             else:
                 reply_markup = None
-
+            try:
+            msg = await client.send_cached_media(
+                chat_id=AUTH_CHANNEL,
+                file_id=file_id,
+                caption=f'<b>Hai 👋 {query.from_user.mention}</b> 😍\n\n<code>[@Mh_linkZzz] {title}</code>\n\n⚠️ <i>This file will be deleted from here within 5 minute as it has copyright ... !!!</i>\n\n<i>Sᴏ ғɪʀsᴛ ғᴏʀᴡᴀʀᴅ ғɪʟᴇ ᴛᴏ ʏᴏᴜʀ ғʀɴᴅ ᴀɴᴅ ᴅᴏᴡɴʟᴏᴀᴅ ᴘʟᴇᴀsᴇ!!</i>\n\n<i><b>⚡ ᴜᴘʟᴏᴀᴅᴇᴅ ʙʏ{query.message.chat.title}</b></i>',
+                protect_content=True if ident == "filep" else False 
+            )
             try:
                 await msg.copy(chat_id=message.from_user.id, caption = caption, parse_mode = 'html', reply_markup = reply_markup, protect_content=PROTECT_CONTENT)
                 await asyncio.sleep(0.5)
